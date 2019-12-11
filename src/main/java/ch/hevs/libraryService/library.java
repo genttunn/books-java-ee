@@ -7,15 +7,11 @@ import ch.hevs.businessobject.Borrowing;
 import ch.hevs.businessobject.Customer;
 import ch.hevs.businessobject.Writer;
 
-public interface library
-{
-	
+public interface Library {
 	public List<Book> getBookListByWriterLastname(String lastname);
 	public List<Borrowing> getBorrowingListByCustomerLastname(String lastname);
 	public List<Book> getAllBooks();
 	public List<Customer>getCustomers();
 	public List<Writer>getWritters();
 	public String borrow(Customer borrower, Book borrowedBook) throws Exception;
-
-	
 }
