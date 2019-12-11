@@ -12,7 +12,6 @@ import javax.persistence.Table;
 @Entity
 public class Category  {
 	/// FIELDS
-	@ManyToMany
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
