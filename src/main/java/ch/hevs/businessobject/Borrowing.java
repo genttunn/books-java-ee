@@ -41,9 +41,8 @@ public class Borrowing
 
 
 
-	public Borrowing(long id, Book book, Customer customer, Date dateBorrow) {
+	public Borrowing(Book book, Customer customer, Date dateBorrow) {
 		super();
-		this.id = id;
 		this.book = book;
 		this.customer = customer;
 		this.dateBorrow = dateBorrow;
