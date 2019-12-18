@@ -12,6 +12,9 @@ public interface Library {
 	public List<Borrowing> getBorrowingListByCustomerLastname(String lastname);
 	public List<Book> getAllBooks();
 	public List<Customer>getCustomers();
-	public List<Writer>getWritters();
+	public List<Writer>getWriters();
 	public String borrow(Customer borrower, Book borrowedBook) throws Exception;
+	public void insertBookData();
+	public String bookName();
+	List<String> getAllBookNames();
 }

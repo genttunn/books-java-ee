@@ -5,12 +5,19 @@
                 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 
-	<persistence-unit name="bankPU">
+	<persistence-unit name="libraryPU">
 		<jta-data-source>java:/labsDS</jta-data-source>
+		<class>ch.hevs.businessobject.Book</class>
+		<class>ch.hevs.businessobject.Borrowing</class>
+		<class>ch.hevs.businessobject.Category</class>
+		<class>ch.hevs.businessobject.Customer</class>
+		<class>ch.hevs.businessobject.Person</class>
+		<class>ch.hevs.businessobject.Writer</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" /> 
 			<property name="dialect" value="org.hibernate.dialect.HSQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 
 		</properties>
 	</persistence-unit>
