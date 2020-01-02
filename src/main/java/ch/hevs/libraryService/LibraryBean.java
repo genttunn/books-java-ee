@@ -27,6 +27,7 @@ import ch.hevs.businessobject.Writer;
 // Borrower = B
 //Declarative security: add a constraint in LibraryBean (using @RolesAllowed)
 @RolesAllowed(value = { "librarian" , "borrower" })
+
 @Stateful
 public class LibraryBean implements Library {
 	@PersistenceContext(name = "LibraryPU", type = PersistenceContextType.EXTENDED)
@@ -56,11 +57,18 @@ public class LibraryBean implements Library {
 		return (List<Borrowing>) query.getResultList();
 	}
 
-	// B View all customer
+	// L View all customer
 	@Override
 	public List<Customer> getCustomers() {
-		Query query = em.createQuery("FROM Customer");
-		return (List<Customer>) query.getResultList();
+		if(!ctx.isCallerInRole("librarian"))
+		{
+			return null;
+		}
+		else
+		{
+			Query query = em.createQuery("FROM Customer");
+			return (List<Customer>) query.getResultList();
+		}
 	}
 
 	// B and L Create customer
