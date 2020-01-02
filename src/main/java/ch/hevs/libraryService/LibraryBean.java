@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
@@ -24,7 +25,8 @@ import ch.hevs.businessobject.Writer;
 // Roles
 // Librarian = L
 // Borrower = B
-
+//Declarative security: add a constraint in LibraryBean (using @RolesAllowed)
+@RolesAllowed(value = { "librarian" , "borrower" })
 @Stateful
 public class LibraryBean implements Library {
 	@PersistenceContext(name = "LibraryPU", type = PersistenceContextType.EXTENDED)

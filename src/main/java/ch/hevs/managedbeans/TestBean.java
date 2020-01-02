@@ -143,4 +143,4 @@ public class TestBean {
     	this.bookName = (String)event.getNewValue(); 	
 	    this.book = library.getBookByName(bookName);
     }
-}
+
