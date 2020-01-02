@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#testPage.xhtml" PATH="/testPage.xhtml"
-  SHAPE="104,200,50,25" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#testPage.xhtml:0" NAME="item"
-   PATH="/testPage.xhtml" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:#listBooks.xhtml" PATH="/listBooks.xhtml"
+  SHAPE="480,176,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#menuPage.xhtml" PATH="/menuPage.xhtml"
+  SHAPE="112,296,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#menuPage.xhtml:0" NAME="item"
+   PATH="/menuPage.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="listBooks::#listBooks.xhtml" NAME="output"
     PATH="/listBooks.xhtml" TARGET="rules:#listBooks.xhtml"
     TITLE="listBooks" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="listWriters::#listWriters.xhtml"
+    NAME="output1" PATH="/listWriters.xhtml"
+    TARGET="rules:#listWriters.xhtml" TITLE="listWriters" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="listBorrowings::#listBorrowings.xhtml"
+    NAME="output2" PATH="/listBorrowings.xhtml"
+    TARGET="rules:#listBorrowings.xhtml" TITLE="listBorrowings" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#listBooks.xhtml" PATH="/listBooks.xhtml"
-  SHAPE="361,216,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#listWriters.xhtml" PATH="/listWriters.xhtml"
+  SHAPE="384,360,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#listWriters.xhtml:0" NAME="item"
+   PATH="/listWriters.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="addWriterForm::#addWriterForm.xhtml"
+    NAME="output" PATH="/addWriterForm.xhtml"
+    TARGET="rules:#addWriterForm.xhtml" TITLE="addWriterForm" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#listBorrowings.xhtml"
+  PATH="/listBorrowings.xhtml" SHAPE="392,504,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#addWriterForm.xhtml"
+  PATH="/addWriterForm.xhtml" SHAPE="656,392,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#addWriterForm.xhtml:0" NAME="item"
+   PATH="/addWriterForm.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="#{testBean.performAddWriter}::#listWriters.xhtml" NAME="output"
+    PATH="/listWriters.xhtml" TARGET="rules:#listWriters.xhtml"
+    TITLE="#{testBean.performAddWriter}" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

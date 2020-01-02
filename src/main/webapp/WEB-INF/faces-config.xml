@@ -7,10 +7,32 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
-  <from-view-id>/testPage.xhtml</from-view-id>
+  <from-view-id>/menuPage.xhtml</from-view-id>
   <navigation-case>
    <from-outcome>listBooks</from-outcome>
    <to-view-id>/listBooks.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listWriters</from-outcome>
+   <to-view-id>/listWriters.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>listBorrowings</from-outcome>
+   <to-view-id>/listBorrowings.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/listWriters.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>addWriterForm</from-outcome>
+   <to-view-id>/addWriterForm.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/addWriterForm.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>#{testBean.performAddWriter}</from-outcome>
+   <to-view-id>/listWriters.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application/>

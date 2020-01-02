@@ -17,12 +17,14 @@ public interface Library {
 	public void addCategoryToBook(Book book, Category cat) throws Exception;
 	public void insertCustomer(String lastName, String firstName, int yearBorn)throws Exception;
 	public void insertWriter(String lastName, String firstName, int yearBorn)throws Exception;
-	
+	public List<Customer> getCustomerByLastName(String lastname) throws Exception;
 	
 	public void insertBookData();
+
 	public String bookName();
 	List<String> getAllBookNames();
 	public List<Book> getAllBooks();
+	public List<Borrowing> getBorrowings();
 }
 
 

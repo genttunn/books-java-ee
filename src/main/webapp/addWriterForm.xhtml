@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:head>Add new writer</h:head>
+		<br></br>
+		<h:body>
+			<h:form>
+				Firstname: <h:inputText required="true" id="firstNameWriter" value="#{testBean.firstNameWriter}" requiredMessage="Please enter first name">
+				</h:inputText>
+				<br></br>
+				Lastname: <h:inputText required="true" id="lastNameWriter" value="#{testBean.lastNameWriter}" requiredMessage="Please enter last name">
+				</h:inputText>
+				<br></br>
+				Year born: <h:inputText required="true" id="yearBornWriter" value="#{testBean.yearBornWriter}" requiredMessage="Please enter year">
+				</h:inputText>
+				<br></br>
+				<h:commandButton value="Submit" action="#{testBean.performAddWriter}"></h:commandButton>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+
+</html>
