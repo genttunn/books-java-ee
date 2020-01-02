@@ -13,16 +13,21 @@
 		<h:body>
 			<h:form>
 				Customer: 
-				<h:selectOneMenu value="#{testBean.customer}"
+				<h:selectOneMenu value="#{testBean.customerName}"
 					valueChangeListener="#{testBean.updateCustomer}"
 					onchange="submit()">
 					<f:selectItems value="#{testBean.customerNames}" />
 				</h:selectOneMenu>
 				<br></br>
 				Book:
+					<h:selectOneMenu value="#{testBean.bookName}"
+					valueChangeListener="#{testBean.updateBook}"
+					onchange="submit()">
+					<f:selectItems value="#{testBean.bookNames}" />
+				</h:selectOneMenu>
 				<br></br>
 				<h:commandButton value="Submit"
-					action="#{testBean.performAddWriter}"></h:commandButton>
+					action="#{testBean.performAddBorrowing}"></h:commandButton>
 			</h:form>
 		</h:body>
 	</ui:define>

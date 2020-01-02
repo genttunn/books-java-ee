@@ -35,5 +35,19 @@
    <to-view-id>/listWriters.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/listBorrowings.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>addBorrowingForm</from-outcome>
+   <to-view-id>/addBorrowingForm.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/addBorrowingForm.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>#{testBean.performAddBorrowing}</from-outcome>
+   <to-view-id>/listBorrowings.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
  <application/>
 </faces-config>

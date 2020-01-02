@@ -60,6 +60,7 @@ public class LibraryBean implements Library {
 	// L View all customer
 	@Override
 	public List<Customer> getCustomers() {
+
 		if(!ctx.isCallerInRole("librarian"))
 		{
 			return null;
@@ -69,6 +70,8 @@ public class LibraryBean implements Library {
 			Query query = em.createQuery("FROM Customer");
 			return (List<Customer>) query.getResultList();
 		}
+
+
 	}
 
 	// B and L Create customer
@@ -78,10 +81,10 @@ public class LibraryBean implements Library {
 		em.persist(cust);
 	}
 	@Override
-	public List<Customer> getCustomerByLastName(String lastname) throws Exception {
+	public Customer getCustomerByLastName(String lastname) throws Exception {
 		Query query = em.createQuery("SELECT c FROM Customer c WHERE c.lastname=:lastname");
 		query.setParameter("lastname", lastname);
-		return (List<Customer>) query.getResultList();
+		return (Customer) query.getResultList().get(0);
 	}
 
 	// L and B
@@ -92,15 +95,15 @@ public class LibraryBean implements Library {
 				borrower.getFirstName() + " " + borrower.getLastName() + " has borrowed " + borrowedBook.getName());
 
 		Date currentDate = Date.valueOf(LocalDate.now());
-		Borrowing borrowing = new Borrowing();
-
+		borrowedBook.setStatusAvailable(false);
+		
+		Borrowing borrowing = new Borrowing(borrowedBook, borrower, currentDate);
+		borrower.addBorrowing(borrowing);
 		em.persist(borrower);
 		em.persist(borrowedBook);
 		em.persist(borrowing);
 
-		borrowedBook.setStatusAvailable(false);
-		borrowing = new Borrowing(borrowedBook, borrower, currentDate);
-		borrower.addBorrowing(borrowing);
+
 	}
 
 	@Override
@@ -151,18 +154,20 @@ public class LibraryBean implements Library {
 
 	@Override
 	public List<String> getAllBookNames() {
-		System.out.println("here books name");
 		return em.createQuery("SELECT o.name FROM Book o").getResultList();
 	}
-
+	@Override
+	public Book getBookByName(String name) {
+		Query query = em.createQuery("SELECT b FROM Book b WHERE b.name=:name");
+		query.setParameter("name", name);
+		return (Book) query.getResultList().get(0);
+	}
 	@Override
 	public List<Book> getAllBooks() {
-		System.out.println("here books");
 		return em.createQuery("FROM Book").getResultList();
 	}
 	@Override
 	public List<Borrowing> getBorrowings() {
-		System.out.println("here borrowings");
 		return em.createQuery("FROM Borrowing").getResultList();
 	}
 	

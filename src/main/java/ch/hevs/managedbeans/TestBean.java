@@ -23,10 +23,13 @@ public class TestBean {
 	private String lastNameWriter;
 	private int yearBornWriter;
 	
-	
-	private String customer;
+	private Customer customer;
+	private String customerName;
 	private List<String> customerNames;
 	
+	private Book book;
+	private String bookName;
+	private List<String> bookNames;
 	
 	@PostConstruct
 	public void init() throws NamingException {
@@ -39,14 +42,14 @@ public class TestBean {
 
 	
 	
-	public String getCustomer() {
-		return customer;
+	public String getCustomerName() {
+		return customerName;
 	}
 
 
 
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	
@@ -101,11 +104,20 @@ public class TestBean {
 	public List<String> getCustomerNames() {
 		List<Customer> customerList = library.getCustomers();
 		for (Customer c : customerList) {
-			this.customerNames.add(c.getFirstName() + " " + c.getLastName());
+			this.customerNames.add(c.getLastName());
 		}
+		System.out.println(this.customerNames);
 		return customerNames;
 	}
 
+	public List<String> getBookNames() {
+		List<Book> bookList = library.getAllBooks();
+		for (Book b : bookList) {
+			this.bookNames.add(b.getName());
+		}
+		return bookNames;
+	}
+	
 	public String performAddWriter() {
 		try {
 			library.insertWriter(lastNameWriter, firstNameWriter, yearBornWriter);
@@ -114,15 +126,21 @@ public class TestBean {
 		}
 		return "listWriters";
 	}
-	
-	// TO DO
-	public void updateCustomer(ValueChangeEvent event) {
-//    	this.customer = (String)event.getNewValue();
-//    	
-//	    List<Customer> customerList = bank.getAccountListFromClientLastname(this.sourceClientName);
-//	    this.sourceAccountDescriptions = new ArrayList<String>();
-//		for (Account account : accounts) {
-//			this.sourceAccountDescriptions.add(account.getDescription());
+	public String performAddBorrowing() {
+		try {
+			library.borrow(customer, book);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return "listBorrowings";
+	}
+	// TO DO
+	public void updateCustomer(ValueChangeEvent event) throws Exception {
+    	this.customerName = (String)event.getNewValue(); 	
+	    this.customer = library.getCustomerByLastName(customerName);
+    }
+	public void updateBook(ValueChangeEvent event) throws Exception {
+    	this.bookName = (String)event.getNewValue(); 	
+	    this.book = library.getBookByName(bookName);
     }
 
