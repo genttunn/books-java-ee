@@ -17,8 +17,8 @@ public interface Library {
 	public void addCategoryToBook(Book book, Category cat) throws Exception;
 	public void insertCustomer(String lastName, String firstName, int yearBorn)throws Exception;
 	public void insertWriter(String lastName, String firstName, int yearBorn)throws Exception;
-	public List<Customer> getCustomerByLastName(String lastname) throws Exception;
-	
+	public Customer getCustomerByLastName(String lastname) throws Exception;
+	public Book getBookByName(String name);
 	public void insertBookData();
 
 	public String bookName();
