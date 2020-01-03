@@ -1,12 +1,15 @@
 package ch.hevs.libraryService;
 
+import java.sql.Date;
 import java.util.List;
 
 import ch.hevs.businessobject.Book;
 import ch.hevs.businessobject.Borrowing;
-import ch.hevs.businessobject.Customer;
-import ch.hevs.businessobject.Writer;
 import ch.hevs.businessobject.Category;
+import ch.hevs.businessobject.Writer;
+import ch.hevs.businessobject.Customer;
+
+
 public interface Library {
 	public List<Book> getBookListByWriterLastname(String lastname);
 	public List<Borrowing> getBorrowingListByCustomerLastname(String lastname);
@@ -20,12 +23,13 @@ public interface Library {
 	public Customer getCustomerByLastName(String lastname) throws Exception;
 	public Book getBookByName(String name);
 	public void insertBookData();
+	
+	public void deleteBook(Book book);
+	public void deleteBorrowing(String bookname, Date date);
 
 	public String bookName();
 	List<String> getAllBookNames();
 	public List<Book> getAllBooks();
 	public List<Borrowing> getBorrowings();
 }
-
-
 

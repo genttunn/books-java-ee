@@ -102,8 +102,6 @@ public class LibraryBean implements Library {
 		em.persist(borrower);
 		em.persist(borrowedBook);
 		em.persist(borrowing);
-
-
 	}
 
 	@Override
@@ -145,7 +143,9 @@ public class LibraryBean implements Library {
 		em.persist(w2);
 		em.persist(c1);
 		em.persist(bo1);
+		
 	}
+	
 
 	@Override
 	public String bookName() {
@@ -169,6 +169,26 @@ public class LibraryBean implements Library {
 	@Override
 	public List<Borrowing> getBorrowings() {
 		return em.createQuery("FROM Borrowing").getResultList();
+	}
+
+	@Override
+	public void deleteBook(Book book) {
+		// TODO Auto-generated method stub
+		em.detach(book);
+	}
+
+	@Override
+	public void deleteBorrowing(String bookname, Date date) {
+		Book book = getBookByName(bookname);
+
+		Query query = em.createQuery("SELECT b FROM Borrowing b WHERE b.book=:book AND b.date =:date");
+		query.setParameter("date", date);
+		query.setParameter("book", book);
+		
+		Borrowing bor = (Borrowing) query;
+		
+		em.detach(bor);
+		
 	}
 	
 }

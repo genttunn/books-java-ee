@@ -35,23 +35,19 @@ public class TestBean {
 	public void init() throws NamingException {
 		System.out.println("init here");
 		InitialContext ctx = new InitialContext();
-		library = (Library) ctx.lookup("java:global/LibraryProject-0.0.1/LibraryBean!ch.hevs.libraryService.Library");
+		Library library = (Library) ctx.lookup("java:global/LibraryProject-0.0.1/LibraryBean!ch.hevs.libraryService.Library");
 		addBooks();
 
 	}
 
-	
-	
 	public String getCustomerName() {
 		return customerName;
 	}
 
 
-
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-
 	
 
 	public String getFirstNameWriter() {
@@ -139,8 +135,10 @@ public class TestBean {
     	this.customerName = (String)event.getNewValue(); 	
 	    this.customer = library.getCustomerByLastName(customerName);
     }
+	
 	public void updateBook(ValueChangeEvent event) throws Exception {
     	this.bookName = (String)event.getNewValue(); 	
 	    this.book = library.getBookByName(bookName);
     }
+}
 
